@@ -96,7 +96,8 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-vis
 .panel h3{font-size:14px;margin:0 0 14px;color:var(--ink-deep)}
 
 /* bar charts */
-.bar{display:grid;grid-template-columns:minmax(110px,190px) 1fr 56px;align-items:center;gap:10px;margin:12px 0;font-size:12.5px}
+.bar{display:grid;grid-template-columns:minmax(110px,190px) 1fr minmax(56px,max-content);align-items:center;gap:10px;margin:12px 0;font-size:12.5px}
+.bar>span:last-child{white-space:nowrap;text-align:right}
 .track{height:9px;background:#eae6da;border-radius:8px;overflow:hidden}
 .fill{height:100%;background:linear-gradient(90deg,var(--sea),var(--sea-dark));border-radius:8px;transition:width .3s}
 .mini-bar{display:flex;align-items:center;gap:8px}
@@ -118,6 +119,15 @@ tbody tr:hover{background:#faf8f2}
 .pill-red{background:var(--danger-bg);color:var(--danger)}
 .link{background:none;border:0;padding:0;color:var(--sea-dark);font-weight:700}
 .link:hover{text-decoration:underline}
+.row-actions{display:flex;gap:7px;justify-content:flex-end}
+.icon-btn{display:inline-flex;align-items:center;justify-content:center;width:31px;height:31px;flex:0 0 auto;border-radius:8px;border:1px solid var(--border);background:#fff;color:var(--muted);transition:background .15s,color .15s,border-color .15s}
+.icon-btn svg{width:15px;height:15px}
+.icon-btn:hover{background:var(--sea-light);color:var(--sea-dark);border-color:var(--sea-light)}
+.icon-btn.icon-delete:hover{background:var(--danger-bg);color:var(--danger);border-color:var(--danger-bg)}
+
+/* confirm dialog */
+.confirm-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--warning-bg);color:var(--warning);margin-bottom:10px}
+.confirm-icon svg{width:23px;height:23px}
 
 /* forms */
 .form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}

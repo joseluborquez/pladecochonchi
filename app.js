@@ -61,10 +61,22 @@
   modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
   $('#modalClose').addEventListener('click', closeModal);
 
+  const ICON_EDIT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>';
+  const ICON_TRASH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>';
+  const ICON_WARNING = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>';
+
+  function rowActions({ editId, delId, editLabel = 'Editar', delLabel = 'Eliminar' } = {}) {
+    return `<div class="row-actions">
+      ${editId ? `<button type="button" class="icon-btn icon-edit" data-edit="${editId}" title="${editLabel}" aria-label="${editLabel}">${ICON_EDIT}</button>` : ''}
+      ${delId ? `<button type="button" class="icon-btn icon-delete" data-del="${delId}" title="${delLabel}" aria-label="${delLabel}">${ICON_TRASH}</button>` : ''}
+    </div>`;
+  }
+
   function confirmDialog(message) {
     return new Promise(resolve => {
       openModal(`
-        <h3>Confirmar</h3>
+        <div class="confirm-icon">${ICON_WARNING}</div>
+        <h3>Advertencia</h3>
         <p class="muted">${escapeHtml(message)}</p>
         <div class="actions">
           <button type="button" class="secondary" id="cdCancel">Cancelar</button>
@@ -271,7 +283,7 @@
         <td>${fmtCurrency(p.presupuesto)}</td>
         <td>${avanceCell(p.avance)}</td>
         <td><span class="pill ${estadoPillClass(p.estados?.nombre)}">${escapeHtml(p.estados?.nombre || '—')}</span></td>
-        <td>${state.isAdmin ? `<button type="button" class="link" data-edit="${p.id}">Editar</button> · <button type="button" class="link" data-del="${p.id}">Eliminar</button>` : ''}</td>
+        <td>${state.isAdmin ? rowActions({ editId: p.id, delId: p.id }) : ''}</td>
       </tr>`).join('') || `<tr><td colspan="7" class="muted">Sin proyectos.</td></tr>`;
     $$('#projectRows [data-edit]').forEach(b => b.addEventListener('click', () => openProjectModal(b.dataset.edit)));
     $$('#projectRows [data-del]').forEach(b => b.addEventListener('click', () => deleteProject(b.dataset.del)));
@@ -411,7 +423,7 @@
         <td>${fmtCurrency(t.presupuesto)}</td>
         <td>${t.pagado ? 'Sí' : 'No'}</td>
         <td>${escapeHtml(t.comprobante || '—')}</td>
-        <td>${editable ? `<button type="button" class="link" data-edit="${t.id}">Editar</button> · <button type="button" class="link" data-del="${t.id}">Eliminar</button>` : ''}</td>
+        <td>${editable ? rowActions({ editId: t.id, delId: t.id }) : ''}</td>
       </tr>`).join('') || `<tr><td colspan="7" class="muted">Sin tareas registradas.</td></tr>`;
     $$('#taskRows [data-edit]').forEach(b => b.addEventListener('click', () => openTaskModal(b.dataset.edit)));
     $$('#taskRows [data-del]').forEach(b => b.addEventListener('click', () => deleteTask(b.dataset.del)));
@@ -519,7 +531,7 @@
       const list = state.catalogs[type];
       $('#catRows').innerHTML = list.map(row => `
         <tr><td>${escapeHtml(catalogRowLabel(type, row))}</td><td>
-          <button type="button" class="link" data-edit="${row.id}">Editar</button> · <button type="button" class="link" data-del="${row.id}">Eliminar</button>
+          ${rowActions({ editId: row.id, delId: row.id })}
         </td></tr>`).join('') || `<tr><td colspan="2" class="muted">Sin registros.</td></tr>`;
       $$('#catRows [data-edit]').forEach(b => b.addEventListener('click', () => { editingId = b.dataset.edit; renderForm(); }));
       $$('#catRows [data-del]').forEach(b => b.addEventListener('click', () => deleteCatalogRow(b.dataset.del)));
@@ -580,7 +592,7 @@
           <td>${escapeHtml(u.nombre_completo)}</td>
           <td>${escapeHtml(u.unidades?.nombre || '—')}</td>
           <td>${u.rol}</td>
-          <td><button type="button" class="link" data-del="${u.id}">Quitar perfil</button></td>
+          <td>${rowActions({ delId: u.id, delLabel: 'Quitar perfil' })}</td>
         </tr>`).join('') || `<tr><td colspan="4" class="muted">Sin usuarios.</td></tr>`;
       $$('#userRows [data-del]').forEach(b => b.addEventListener('click', async () => {
         const ok = await confirmDialog('¿Quitar el perfil de este usuario? No elimina su cuenta de Authentication.');
