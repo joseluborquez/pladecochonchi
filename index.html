@@ -43,9 +43,10 @@ h1,h2,h3{font-weight:700}
 .login:before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(115deg,rgba(255,255,255,.05) 0 3px,transparent 3px 34px);pointer-events:none}
 .login-card{position:relative;width:min(440px,100%);padding:38px;background:var(--surface);border-radius:16px;box-shadow:var(--shadow-md)}
 .login h1{margin:19px 0 4px;font:600 25px/1.2 var(--font-display);color:var(--ink-deep)}
-.field{display:grid;gap:6px;margin:14px 0}
+.field{display:grid;gap:6px;margin:14px 0;min-width:0}
 .field label{font-weight:600;font-size:13px}
-input,select,textarea{border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 11px;background:#fff;transition:border-color .15s,box-shadow .15s}
+input,select,textarea{width:100%;min-width:0;border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 11px;background:#fff;transition:border-color .15s,box-shadow .15s}
+.form-grid select{text-overflow:ellipsis}
 input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:none;border-color:var(--sea);box-shadow:0 0 0 3px var(--sea-light)}
 .primary,.secondary,.danger{border:0;border-radius:var(--radius-sm);padding:10px 14px;font-weight:700;transition:filter .15s,transform .05s}
 .primary{background:var(--sea);color:#fff;box-shadow:var(--shadow-sm)}
@@ -130,7 +131,7 @@ tbody tr:hover{background:#faf8f2}
 .confirm-icon svg{width:23px;height:23px}
 
 /* forms */
-.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;min-width:0}
 .wide{grid-column:span 3}
 .two{grid-column:span 2}
 .actions{display:flex;gap:9px;justify-content:flex-end;margin-top:18px}
