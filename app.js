@@ -59,6 +59,7 @@
     modalCard.innerHTML = '';
   }
   modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  $('#modalClose').addEventListener('click', closeModal);
 
   function confirmDialog(message) {
     return new Promise(resolve => {
@@ -80,8 +81,23 @@
     loginNotice.classList.add('error');
   }
   function hideLoginNotice() { loginNotice.classList.add('hide'); }
-  function showLogin() { loginView.classList.remove('hide'); appView.classList.add('hide'); }
-  function showApp() { loginView.classList.add('hide'); appView.classList.remove('hide'); }
+  function hideBoot() { $('#bootLoading').classList.add('hide'); }
+  function showLogin() { hideBoot(); loginView.classList.remove('hide'); appView.classList.add('hide'); }
+  function showApp() { hideBoot(); loginView.classList.add('hide'); appView.classList.remove('hide'); }
+
+  function estadoPillClass(nombre) {
+    const n = (nombre || '').toUpperCase();
+    if (n.includes('APROB')) return 'pill-green';
+    if (n.includes('EJECU')) return 'pill-blue';
+    if (n.includes('DISE')) return 'pill-purple';
+    if (n.includes('FORMULA')) return 'pill-amber';
+    if (n.includes('SIN INICIO')) return 'pill-red';
+    return 'pill-gray';
+  }
+  function avanceCell(avance) {
+    const pct = Math.round((avance || 0) * 100);
+    return `<div class="mini-bar"><div class="mini-track"><div class="fill" style="width:${pct}%"></div></div><span>${pct}%</span></div>`;
+  }
 
   function catalogSelectOptions(items, current, labelFn) {
     return `<option value="">—</option>` + items.map(i => `<option value="${i.id}" ${i.id === current ? 'selected' : ''}>${escapeHtml(labelFn(i))}</option>`).join('');
@@ -253,8 +269,8 @@
         <td>${escapeHtml(p.ambitos?.nombre || '—')}</td>
         <td>${escapeHtml(p.unidades?.nombre || '—')}</td>
         <td>${fmtCurrency(p.presupuesto)}</td>
-        <td>${fmtPercent(p.avance)}</td>
-        <td><span class="pill">${escapeHtml(p.estados?.nombre || '—')}</span></td>
+        <td>${avanceCell(p.avance)}</td>
+        <td><span class="pill ${estadoPillClass(p.estados?.nombre)}">${escapeHtml(p.estados?.nombre || '—')}</span></td>
         <td>${state.isAdmin ? `<button type="button" class="link" data-edit="${p.id}">Editar</button> · <button type="button" class="link" data-del="${p.id}">Eliminar</button>` : ''}</td>
       </tr>`).join('') || `<tr><td colspan="7" class="muted">Sin proyectos.</td></tr>`;
     $$('#projectRows [data-edit]').forEach(b => b.addEventListener('click', () => openProjectModal(b.dataset.edit)));
@@ -390,7 +406,7 @@
     $('#taskRows').innerHTML = tareas.map(t => `
       <tr>
         <td>${escapeHtml(t.nombre)}</td>
-        <td>${fmtPercent(t.avance)}</td>
+        <td>${avanceCell(t.avance)}</td>
         <td>${fmtPercent(t.ponderador)}</td>
         <td>${fmtCurrency(t.presupuesto)}</td>
         <td>${t.pagado ? 'Sí' : 'No'}</td>

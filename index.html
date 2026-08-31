@@ -1,8 +1,168 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Seguimiento PLADECO · Chonchi</title><style>:root{--n:#123b55;--t:#087c67;--b:#f4f7f8;--l:#dce6e9;--i:#18313e;--m:#667982}*{box-sizing:border-box}body{margin:0;background:var(--b);font:14px Arial;color:var(--i)}button,input,select,textarea{font:inherit}button{cursor:pointer}.hide{display:none!important}.login{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#0d3855,#107d70)}.login-card{width:min(440px,calc(100% - 30px));padding:36px;background:white;border-radius:15px}.logo{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--t);color:white;font-size:25px}.login h1{margin:19px 0 5px}.muted{color:var(--m)}.field{display:grid;gap:6px;margin:13px 0}.field label{font-weight:600}input,select,textarea{border:1px solid var(--l);border-radius:8px;padding:9px 10px;background:#fff}.primary,.secondary,.danger{border:0;border-radius:8px;padding:10px 13px;font-weight:700}.primary{background:var(--t);color:#fff}.secondary{background:#edf3f4;color:var(--i)}.danger{background:#fbeaec;color:#b23e48}.full{width:100%;margin-top:12px}.notice{padding:10px 12px;margin:14px 0;border-radius:8px;background:#edf8f4;color:#08604e}.notice.error{background:#fff0f1;color:#b23e48}.shell{display:grid;grid-template-columns:245px 1fr;min-height:100vh}.side{background:var(--n);color:#d8e7ec;padding:23px 14px;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:10px;padding:0 8px 25px;border-bottom:1px solid #ffffff24}.brand .logo{width:36px;height:36px;font-size:19px}.brand strong{color:#fff}.brand small{display:block;opacity:.7}.nav{display:grid;gap:5px;margin-top:17px}.nav button{border:0;text-align:left;color:#c7d9df;background:transparent;padding:11px 12px;border-radius:7px}.nav button.on,.nav button:hover{color:#fff;background:#ffffff1c}.user-box{margin-top:auto;padding:14px 9px;font-size:12px}.top{height:70px;background:#fff;border-bottom:1px solid var(--l);display:flex;align-items:center;justify-content:space-between;padding:0 30px}.top h1{font-size:17px}.top-right{display:flex;gap:12px;align-items:center}.avatar{width:34px;height:34px;border-radius:50%;background:#dcefe9;color:var(--t);display:grid;place-items:center;font-weight:700}.content{max-width:1450px;margin:auto;padding:28px 30px}.page{display:none}.page.on{display:block}.page h2{margin:0 0 3px;font-size:25px}.filters,.tools{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.filters select{min-width:190px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:17px 0}.card,.panel{background:#fff;border:1px solid var(--l);border-radius:11px;padding:16px}.metric-label{font-size:12px;color:var(--m)}.metric{font-size:27px;font-weight:700;margin:5px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.panel h3{font-size:14px;margin:0 0 14px}.bar{display:grid;grid-template-columns:minmax(110px,185px) 1fr 52px;align-items:center;gap:10px;margin:11px 0;font-size:12px}.track{height:10px;background:#e6eef0;border-radius:8px;overflow:hidden}.fill{height:100%;background:var(--t);border-radius:8px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}th{background:#f6f9fa;color:var(--m);text-align:left}th,td{padding:11px;border-bottom:1px solid var(--l);vertical-align:top}.pill{font-size:11px;border-radius:100px;background:#e8f5f1;color:#056d59;padding:3px 8px;font-weight:700}.link{background:none;border:0;padding:0;color:#18799f;font-weight:700}.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.wide{grid-column:span 3}.two{grid-column:span 2}.actions{display:flex;gap:9px;justify-content:flex-end;margin-top:18px}.warning{border-left:3px solid #d8951b;background:#fff8e9;color:#805b14;padding:10px;margin:12px 0}.admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.admin-grid p{color:var(--m);min-height:40px}.modal{position:fixed;inset:0;background:#0007;display:grid;place-items:center;padding:18px;z-index:20}.modal-card{width:min(920px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:13px;padding:23px}.toast{position:fixed;right:22px;bottom:20px;color:#fff;background:#18313e;padding:12px 15px;border-radius:8px;z-index:30}@media(max-width:900px){.shell{grid-template-columns:64px 1fr}.side{padding:13px 7px}.brand strong,.brand small,.nav button{font-size:0}.brand{padding:0 4px 20px}.nav button{text-align:center;height:43px}.nav button:before{font-size:18px}.nav button:nth-child(1):before{content:'▦'}.nav button:nth-child(2):before{content:'▤'}.nav button:nth-child(3):before{content:'✓'}.nav button:nth-child(4):before{content:'⚙'}.user-box{display:none}.cards{grid-template-columns:repeat(2,1fr)}.grid,.admin-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.wide,.two{grid-column:span 1}.content,.top{padding-left:17px;padding-right:17px}}@media(max-width:560px){.cards{grid-template-columns:1fr}.top h1{font-size:14px}.top-right span{display:none}}</style></head><body>
-<section id="loginView" class="login"><form class="login-card" id="loginForm"><div class="logo">⌁</div><h1>Seguimiento PLADECO</h1><p class="muted">I. Municipalidad de Chonchi</p><div id="loginNotice" class="notice hide"></div><div class="field"><label>Correo institucional</label><input id="email" type="email" required></div><div class="field"><label>Contraseña</label><input id="password" type="password" required></div><button class="primary full">Ingresar</button><p class="muted" style="font-size:12px">Las cuentas las crea el equipo administrador.</p></form></section>
-<section id="appView" class="shell hide"><aside class="side"><div class="brand"><div class="logo">⌁</div><div><strong>PLADECO</strong><small>Municipalidad de Chonchi</small></div></div><nav class="nav"><button class="on" data-page="dashboard">Dashboard</button><button data-page="projects">Base de proyectos</button><button data-page="tasks">Avance por tareas</button><button data-page="admin">Administración</button></nav><div class="user-box" id="sideUser"></div></aside><main><header class="top"><h1>I. Municipalidad de Chonchi — Seguimiento PLADECO</h1><div class="top-right"><div class="avatar" id="avatar">?</div><span id="topUser"></span><button class="secondary" id="logoutBtn">Salir</button></div></header><div class="content">
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Seguimiento PLADECO · Chonchi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --font-display:'Fraunces',Georgia,serif;
+  --ink-deep:#123028;--ink-deep-2:#0a201a;
+  --sea:#1f6355;--sea-dark:#144a3f;--sea-light:#e7f2ef;
+  --ochre:#c8862e;--ochre-dark:#a06d21;--ochre-light:#faedd9;
+  --bg:#f6f3ec;--surface:#fff;--border:#e3ddd0;
+  --ink:#1c2723;--muted:#6c6355;
+  --danger:#c0392b;--danger-bg:#fbe9e6;
+  --warning:#a9720f;--warning-bg:#fff3dc;
+  --radius:10px;--radius-sm:7px;
+  --shadow-sm:0 1px 2px rgba(15,35,30,.07);
+  --shadow-md:0 10px 26px rgba(15,35,30,.12);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+h1,h2,h3{font-weight:700}
+.hide{display:none!important}
+.muted{color:var(--muted)}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+
+/* shingle texture, used sparingly on dark surfaces */
+.shingles{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 2px,transparent 2px 26px)}
+
+/* boot splash */
+.boot{position:fixed;inset:0;z-index:50;display:grid;place-items:center;gap:14px;background:linear-gradient(150deg,var(--ink-deep-2),var(--sea-dark));color:#fff}
+.spinner{width:34px;height:34px;border-radius:50%;border:3px solid rgba(255,255,255,.28);border-top-color:var(--ochre);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* brandmark */
+.logo{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--ochre);color:#fff;box-shadow:var(--shadow-sm)}
+.logo svg{width:24px;height:24px}
+.brand .logo{width:36px;height:36px}
+.brand .logo svg{width:19px;height:19px}
+
+/* login */
+.login{min-height:100vh;display:grid;place-items:center;background:linear-gradient(150deg,var(--ink-deep-2),var(--sea-dark));padding:24px;position:relative;overflow:hidden}
+.login:before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(115deg,rgba(255,255,255,.05) 0 3px,transparent 3px 34px);pointer-events:none}
+.login-card{position:relative;width:min(440px,100%);padding:38px;background:var(--surface);border-radius:16px;box-shadow:var(--shadow-md)}
+.login h1{margin:19px 0 4px;font:600 25px/1.2 var(--font-display);color:var(--ink-deep)}
+.field{display:grid;gap:6px;margin:14px 0}
+.field label{font-weight:600;font-size:13px}
+input,select,textarea{border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 11px;background:#fff;transition:border-color .15s,box-shadow .15s}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:none;border-color:var(--sea);box-shadow:0 0 0 3px var(--sea-light)}
+.primary,.secondary,.danger{border:0;border-radius:var(--radius-sm);padding:10px 14px;font-weight:700;transition:filter .15s,transform .05s}
+.primary{background:var(--sea);color:#fff;box-shadow:var(--shadow-sm)}
+.primary:hover{filter:brightness(1.1)}
+.primary:active{transform:translateY(1px)}
+.primary:disabled{filter:none;opacity:.6;cursor:not-allowed}
+.secondary{background:#eef0e9;color:var(--ink)}
+.secondary:hover{background:#e5e8de}
+.danger{background:var(--danger-bg);color:var(--danger)}
+.danger:hover{filter:brightness(0.97)}
+.full{width:100%;margin-top:14px}
+.notice{padding:10px 12px;margin:14px 0;border-radius:var(--radius-sm);background:var(--sea-light);color:var(--sea-dark);font-size:13px}
+.notice.error{background:var(--danger-bg);color:var(--danger)}
+
+/* app shell */
+.shell{display:grid;grid-template-columns:246px 1fr;min-height:100vh}
+.side{background:linear-gradient(180deg,var(--ink-deep),var(--ink-deep-2));color:#c8d6cf;padding:22px 14px;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:0 8px 22px;border-bottom:1px solid #ffffff1f}
+.brand strong{color:#fff;display:block;font:600 16px var(--font-display)}
+.brand small{display:block;opacity:.65;font-size:11px}
+.nav{display:grid;gap:4px;margin-top:16px}
+.nav button{border:0;display:flex;align-items:center;gap:11px;text-align:left;color:#c3d3cb;background:transparent;padding:10px 12px;border-radius:8px;font-size:13.5px;transition:background .15s,color .15s}
+.nav button .ico{width:18px;text-align:center;opacity:.85;font-size:15px}
+.nav button:hover{color:#fff;background:#ffffff14}
+.nav button.on{color:#fff;background:#ffffff1e;box-shadow:inset 3px 0 0 var(--ochre)}
+.user-box{margin-top:auto;padding:14px 10px 2px;font-size:12px;border-top:1px solid #ffffff1f}
+.top{height:68px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:5}
+.top h1{font:600 16px/1.3 var(--font-display);margin:0;color:var(--ink-deep)}
+.top-right{display:flex;gap:13px;align-items:center}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--ochre-light);color:var(--ochre-dark);display:grid;place-items:center;font-weight:700}
+.content{max-width:1450px;margin:auto;padding:28px 30px}
+.page{display:none}
+.page.on{display:block}
+.page h2{margin:0 0 4px;font:600 25px var(--font-display);color:var(--ink-deep)}
+
+/* filters / tools */
+.filters,.tools{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.filters select{min-width:190px}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
+.card,.panel{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow-sm)}
+.card{overflow:hidden;padding-left:22px}
+.card:before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--ochre)}
+.metric-label{font-size:12px;color:var(--muted)}
+.metric{font-size:28px;font-weight:700;margin:5px 0;color:var(--ink-deep)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.panel h3{font-size:14px;margin:0 0 14px;color:var(--ink-deep)}
+
+/* bar charts */
+.bar{display:grid;grid-template-columns:minmax(110px,190px) 1fr 56px;align-items:center;gap:10px;margin:12px 0;font-size:12.5px}
+.track{height:9px;background:#eae6da;border-radius:8px;overflow:hidden}
+.fill{height:100%;background:linear-gradient(90deg,var(--sea),var(--sea-dark));border-radius:8px;transition:width .3s}
+.mini-bar{display:flex;align-items:center;gap:8px}
+.mini-track{width:64px;height:6px;background:#eae6da;border-radius:6px;overflow:hidden;flex:0 0 auto}
+.mini-track .fill{height:100%}
+
+/* tables */
+.table-wrap{overflow:auto;border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{background:#f5f2e9;color:var(--muted);text-align:left;position:sticky;top:0;font-weight:600}
+th,td{padding:11px;border-bottom:1px solid var(--border);vertical-align:top}
+tbody tr:hover{background:#faf8f2}
+.pill{display:inline-block;font-size:11px;border-radius:100px;background:var(--sea-light);color:var(--sea-dark);padding:3px 9px;font-weight:700;white-space:nowrap}
+.pill-green{background:#e6f6ec;color:#1c7c40}
+.pill-blue{background:#e7f1fb;color:#1e5fa8}
+.pill-purple{background:#f1ecfb;color:#5b3aa8}
+.pill-amber{background:var(--warning-bg);color:var(--warning)}
+.pill-gray{background:#eeece4;color:var(--muted)}
+.pill-red{background:var(--danger-bg);color:var(--danger)}
+.link{background:none;border:0;padding:0;color:var(--sea-dark);font-weight:700}
+.link:hover{text-decoration:underline}
+
+/* forms */
+.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.wide{grid-column:span 3}
+.two{grid-column:span 2}
+.actions{display:flex;gap:9px;justify-content:flex-end;margin-top:18px}
+.warning{border-left:3px solid var(--warning);background:var(--warning-bg);color:#805b14;padding:10px 12px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+
+/* admin */
+.admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.admin-grid p{color:var(--muted);min-height:40px}
+
+/* modal / toast */
+.modal{position:fixed;inset:0;background:#0e2016b3;display:grid;place-items:center;padding:18px;z-index:20}
+.modal-shell{position:relative;width:min(920px,calc(100vw - 36px));max-height:92vh}
+.modal-card{max-height:92vh;overflow:auto;background:var(--surface);border-radius:14px;padding:24px;box-shadow:var(--shadow-md)}
+.modal-close{position:absolute;top:-14px;right:-14px;background:#fff;border:1px solid var(--border);border-radius:50%;width:32px;height:32px;font-size:17px;line-height:1;color:var(--muted);box-shadow:var(--shadow-sm);z-index:1}
+.modal-close:hover{color:var(--ink)}
+.toast{position:fixed;right:22px;bottom:20px;color:#fff;background:var(--ink-deep-2);padding:12px 16px;border-radius:var(--radius-sm);z-index:30;box-shadow:var(--shadow-md)}
+
+@media(max-width:900px){
+  .shell{grid-template-columns:64px 1fr}
+  .side{padding:13px 7px}
+  .brand strong,.brand small,.nav button .label{display:none}
+  .brand{padding:0 4px 20px;justify-content:center}
+  .nav button{justify-content:center;height:43px}
+  .nav button .ico{font-size:18px}
+  .user-box{display:none}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .grid,.admin-grid{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .wide,.two{grid-column:span 1}
+  .content,.top{padding-left:17px;padding-right:17px}
+}
+@media(max-width:560px){
+  .cards{grid-template-columns:1fr}
+  .top h1{font-size:14px}
+  .top-right span{display:none}
+}
+</style></head><body>
+<div id="bootLoading" class="boot"><div class="spinner"></div><div>Cargando Seguimiento PLADECO…</div></div>
+<section id="loginView" class="login hide"><form class="login-card" id="loginForm"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5 12 4l9 8.5"/><path d="M5.5 11v9h13v-9"/><path d="M9.5 20v-5.5h5V20"/></svg></div><h1>Seguimiento PLADECO</h1><p class="muted">I. Municipalidad de Chonchi</p><div id="loginNotice" class="notice hide"></div><div class="field"><label>Correo institucional</label><input id="email" type="email" required></div><div class="field"><label>Contraseña</label><input id="password" type="password" required></div><button class="primary full">Ingresar</button><p class="muted" style="font-size:12px">Las cuentas las crea el equipo administrador.</p></form></section>
+<section id="appView" class="shell hide"><aside class="side"><div class="brand"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5 12 4l9 8.5"/><path d="M5.5 11v9h13v-9"/><path d="M9.5 20v-5.5h5V20"/></svg></div><div><strong>PLADECO</strong><small>Municipalidad de Chonchi</small></div></div><nav class="nav"><button class="on" data-page="dashboard"><span class="ico">▦</span><span class="label">Dashboard</span></button><button data-page="projects"><span class="ico">▤</span><span class="label">Base de proyectos</span></button><button data-page="tasks"><span class="ico">✓</span><span class="label">Avance por tareas</span></button><button data-page="admin"><span class="ico">⚙</span><span class="label">Administración</span></button></nav><div class="user-box" id="sideUser"></div></aside><main><header class="top"><h1>I. Municipalidad de Chonchi — Seguimiento PLADECO</h1><div class="top-right"><div class="avatar" id="avatar">?</div><span id="topUser"></span><button class="secondary" id="logoutBtn">Salir</button></div></header><div class="content">
 <section id="dashboard" class="page on"><h2>Avance por proyectos</h2><p class="muted">Seguimiento en tiempo real de la cartera comunal.</p><div class="filters"><select id="filterAmbito"><option value="">Todos los ámbitos</option></select><select id="filterLineamiento"><option value="">Todos los lineamientos</option></select><select id="filterObjetivo"><option value="">Todos los objetivos</option></select></div><div class="cards"><div class="card"><div class="metric-label">Avance general comunal</div><div class="metric" id="mAdvance">—</div></div><div class="card"><div class="metric-label">Proyectos</div><div class="metric" id="mProjects">—</div></div><div class="card"><div class="metric-label">Presupuesto total</div><div class="metric" id="mBudget">—</div></div><div class="card"><div class="metric-label">Tareas al 100%</div><div class="metric" id="mTasks">—</div></div></div><div class="grid"><article class="panel"><h3>Proyectos por ámbito</h3><div id="ambitoChart"></div></article><article class="panel"><h3>Presupuesto por ámbito</h3><div id="budgetChart"></div></article><article class="panel"><h3>Avance por proyecto</h3><div id="projectChart"></div></article><article class="panel"><h3>Avance por lineamiento</h3><div id="lineamientoChart"></div></article></div></section>
 <section id="projects" class="page"><h2>Base de proyectos</h2><p class="muted">Ficha maestra, avance calculado y responsable técnico.</p><div class="tools"><input id="projectSearch" placeholder="Buscar proyecto, unidad o estado…"><button class="secondary" id="csvBtn">↓ Exportar CSV</button><button class="primary admin-only" id="newProjectBtn">+ Nuevo proyecto</button></div><article class="panel table-wrap"><table><thead><tr><th>Proyecto</th><th>Ámbito</th><th>UTR</th><th>Presupuesto</th><th>Avance</th><th>Estado</th><th></th></tr></thead><tbody id="projectRows"></tbody></table></article></section>
 <section id="tasks" class="page"><h2>Avance por tareas</h2><p class="muted">Actualiza las etapas de proyectos asignados a tu unidad.</p><div class="tools"><select id="taskProjectSelect"></select><button id="newTaskBtn" class="primary">+ Nueva tarea</button></div><div id="taskSummary" class="warning"></div><article class="panel table-wrap"><table><thead><tr><th>Tarea</th><th>Avance</th><th>Ponderador</th><th>Presupuesto</th><th>Pagado</th><th>Comprobante</th><th></th></tr></thead><tbody id="taskRows"></tbody></table></article></section>
 <section id="admin" class="page"><h2>Administración</h2><p class="muted">Solo para SECPLAN y equipo de control de gestión.</p><div class="admin-grid"><article class="panel"><h3>Catálogos</h3><p>Administra ámbitos, lineamientos, objetivos, estados y unidades.</p><button class="secondary" data-catalog="unidades">Gestionar catálogos</button></article><article class="panel"><h3>Usuarios</h3><p>Crea cuentas y asigna una unidad responsable y su rol.</p><button class="secondary" id="userAdminBtn">Gestionar usuarios</button></article><article class="panel"><h3>Carga inicial</h3><p>Importa la cartera real incluida desde el Excel fuente.</p><button class="primary" id="importBtn">Importar datos PLADECO</button></article></div></section>
-</div></main></section><div id="modal" class="modal hide"><div id="modalCard" class="modal-card"></div></div><div id="toast" class="toast hide"></div><script src="config.js"></script><script src="data.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="app.js"></script></body></html>
+</div></main></section><div id="modal" class="modal hide"><div class="modal-shell"><button id="modalClose" class="modal-close" type="button" aria-label="Cerrar">×</button><div id="modalCard" class="modal-card"></div></div></div><div id="toast" class="toast hide"></div><script src="config.js"></script><script src="data.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="app.js"></script></body></html>
