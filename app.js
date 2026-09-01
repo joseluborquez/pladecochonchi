@@ -270,6 +270,81 @@
 
   ['filterAmbito', 'filterLineamiento', 'filterObjetivo'].forEach(id => $('#' + id).addEventListener('change', renderDashboard));
 
+  // ---- Informe resumen ----
+  function buildReportHtml() {
+    const list = filteredProyectos();
+    const totalPresupuesto = list.reduce((a, p) => a + Number(p.presupuesto || 0), 0);
+    const avanceSimple = list.length ? list.reduce((a, p) => a + Number(p.avance || 0), 0) / list.length : 0;
+    const avancePonderado = totalPresupuesto ? list.reduce((a, p) => a + Number(p.avance || 0) * Number(p.presupuesto || 0), 0) / totalPresupuesto : 0;
+    const conAvance = list.filter(p => Number(p.avance) > 0).length;
+    const completados = list.filter(p => Number(p.avance) >= 1).length;
+    const unidadesResp = new Set(list.map(p => p.unidades?.nombre).filter(Boolean)).size;
+
+    const byUnidad = groupBy(list, p => p.unidades?.nombre || 'Sin unidad');
+    const unidadRows = Object.entries(byUnidad)
+      .map(([nombre, items]) => ({ nombre, count: items.length, avg: items.reduce((a, p) => a + Number(p.avance || 0), 0) / items.length }))
+      .sort((a, b) => b.count - a.count);
+
+    const tramos = [
+      { label: 'Sin avance', test: v => v <= 0 },
+      { label: '1%–24%', test: v => v > 0 && v < 0.25 },
+      { label: '25%–74%', test: v => v >= 0.25 && v < 0.75 },
+      { label: '75%–100%', test: v => v >= 0.75 },
+    ].map(t => ({ label: t.label, count: list.filter(p => t.test(Number(p.avance || 0))).length }));
+
+    const top5 = [...list].sort((a, b) => Number(b.avance) - Number(a.avance)).slice(0, 5);
+    const fecha = new Date().toLocaleDateString('es-CL', { day: '2-digit', month: 'long', year: 'numeric' });
+
+    return `
+      <div class="report-head">
+        <div class="report-brand"><strong>I. Municipalidad de Chonchi</strong><small>Seguimiento PLADECO</small></div>
+        <div class="report-meta">Generado el ${fecha}${state.profile ? ' por ' + escapeHtml(state.profile.nombre_completo) : ''}</div>
+      </div>
+      <h1>Informe resumen de la cartera de proyectos</h1>
+      <p>La cartera analizada contiene <strong>${list.length}</strong> proyectos, con un avance promedio de <strong>${fmtPercent(avanceSimple)}</strong> (ponderado por presupuesto: <strong>${fmtPercent(avancePonderado)}</strong>). <strong>${conAvance}</strong> proyecto(s) registran algún avance y <strong>${completados}</strong> están completados.</p>
+      <div class="report-kpis">
+        <div><span>Proyectos</span><strong>${list.length}</strong></div>
+        <div><span>Avance promedio</span><strong>${fmtPercent(avanceSimple)}</strong></div>
+        <div><span>Presupuesto total</span><strong>${fmtCurrency(totalPresupuesto)}</strong></div>
+        <div><span>Unidades responsables</span><strong>${unidadesResp}</strong></div>
+      </div>
+      <h2>Distribución por tramo de avance</h2>
+      <table><thead><tr><th>Tramo</th><th>Proyectos</th></tr></thead><tbody>
+        ${tramos.map(t => `<tr><td>${t.label}</td><td>${t.count}</td></tr>`).join('')}
+      </tbody></table>
+      <h2>Desempeño por unidad</h2>
+      <table><thead><tr><th>Unidad</th><th>Proyectos</th><th>Avance promedio</th></tr></thead><tbody>
+        ${unidadRows.map(u => `<tr><td>${escapeHtml(u.nombre)}</td><td>${u.count}</td><td>${fmtPercent(u.avg)}</td></tr>`).join('') || '<tr><td colspan="3">Sin datos.</td></tr>'}
+      </tbody></table>
+      <h2>Proyectos destacados</h2>
+      <table><thead><tr><th>Proyecto</th><th>Ámbito</th><th>Avance</th></tr></thead><tbody>
+        ${top5.map(p => `<tr><td>${escapeHtml(p.nombre)}</td><td>${escapeHtml(p.ambitos?.nombre || '—')}</td><td>${fmtPercent(p.avance)}</td></tr>`).join('') || '<tr><td colspan="3">Sin datos.</td></tr>'}
+      </tbody></table>
+      <h2>Detalle de proyectos</h2>
+      <table><thead><tr><th>Proyecto</th><th>Ámbito</th><th>UTR</th><th>Presupuesto</th><th>Avance</th><th>Estado</th></tr></thead><tbody>
+        ${list.map(p => `<tr><td>${escapeHtml(p.nombre)}</td><td>${escapeHtml(p.ambitos?.nombre || '—')}</td><td>${escapeHtml(p.unidades?.nombre || '—')}</td><td>${fmtCurrency(p.presupuesto)}</td><td>${fmtPercent(p.avance)}</td><td>${escapeHtml(p.estados?.nombre || '—')}</td></tr>`).join('') || '<tr><td colspan="6">Sin proyectos.</td></tr>'}
+      </tbody></table>`;
+  }
+
+  function openReportModal() {
+    const html = buildReportHtml();
+    openModal(`
+      <h3>Informe resumen</h3>
+      <p class="muted">Refleja los filtros activos en el dashboard.</p>
+      <div class="report-preview">${html}</div>
+      <div class="actions">
+        <button type="button" class="secondary" id="rpClose">Cerrar</button>
+        <button type="button" class="primary" id="rpDownload">↓ Descargar / Imprimir</button>
+      </div>`);
+    $('#rpClose').onclick = closeModal;
+    $('#rpDownload').onclick = () => {
+      $('#printReport').innerHTML = html;
+      window.print();
+    };
+  }
+
+  $('#reportBtn').addEventListener('click', openReportModal);
+
   // ---- Projects page ----
   function renderProjectsTable() {
     const term = ($('#projectSearch').value || '').toLowerCase();
