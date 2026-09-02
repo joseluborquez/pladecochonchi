@@ -258,6 +258,17 @@
       const v = items.reduce((a, p) => a + Number(p.presupuesto || 0), 0);
       return { label, value: v, display: fmtCurrency(v) };
     }));
+    renderBars($('#ambitoAvanceChart'), Object.entries(byAmbito).map(([label, items]) => {
+      const avg = items.reduce((a, p) => a + Number(p.avance || 0), 0) / items.length;
+      return { label, value: avg * 100, display: fmtPercent(avg) };
+    }));
+
+    const byObjetivo = groupBy(list.filter(p => p.objetivos), p => p.objetivos.descripcion);
+    renderBars($('#objetivoChart'), Object.entries(byObjetivo).map(([label, items]) => {
+      const avg = items.reduce((a, p) => a + Number(p.avance || 0), 0) / items.length;
+      return { label, value: avg * 100, display: fmtPercent(avg) };
+    }));
+
     const topProyectos = [...list].sort((a, b) => Number(b.presupuesto) - Number(a.presupuesto)).slice(0, 10);
     renderBars($('#projectChart'), topProyectos.map(p => ({ label: p.nombre, value: Number(p.avance) * 100, display: fmtPercent(p.avance) })));
 
